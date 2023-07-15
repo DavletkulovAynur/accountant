@@ -7,6 +7,7 @@ import { Col, Row } from 'antd'
 
 const { TextArea } = Input
 
+//FIXME: одна из задач исправить дату 
 const EditModal: FC<any> = memo(({ closeModal, isModalOpen }) => {
   const [value, setValue] = useState('')
   const onChange: DatePickerProps['onChange'] = (date, dateString) => {
@@ -16,20 +17,24 @@ const EditModal: FC<any> = memo(({ closeModal, isModalOpen }) => {
   return (
     <>
       <Modal
-        title="Какой то текст про ..."
+        title="Редактировать"
         open={isModalOpen}
         onOk={closeModal}
         onCancel={closeModal}
         okText="Сохранить"
         cancelText="Отмена"
       >
-        <Input className="mr-bottom12" placeholder="Категория" />
-        <Row>
+        <Input className="modal__input" placeholder="Категория" />
+        <Row className="modal__row" gutter={[16, 0]}>
           <Col flex={1}>
             <Input placeholder="Сумма" />
           </Col>
           <Col flex={1}>
-            <DatePicker onChange={onChange} />
+            <DatePicker
+              placeholder="Дата"
+              className="modal__date"
+              onChange={onChange}
+            />
           </Col>
         </Row>
         <TextArea
