@@ -1,35 +1,48 @@
-import { memo, useState } from 'react'
-import { Button, Modal } from 'antd'
+import { memo, FC, useState } from 'react'
+import { Modal } from 'antd'
+import { Input } from 'antd'
+import type { DatePickerProps } from 'antd'
+import { DatePicker } from 'antd'
+import { Col, Row } from 'antd'
 
-const EditModal = memo(() => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+const { TextArea } = Input
 
-  const showModal = () => {
-    setIsModalOpen(true)
-  }
-
-  const handleOk = () => {
-    setIsModalOpen(false)
-  }
-
-  const handleCancel = () => {
-    setIsModalOpen(false)
+//FIXME: одна из задач исправить дату 
+const EditModal: FC<any> = memo(({ closeModal, isModalOpen }) => {
+  const [value, setValue] = useState('')
+  const onChange: DatePickerProps['onChange'] = (date, dateString) => {
+    console.log(date, dateString)
   }
 
   return (
     <>
-      <Button type="primary" onClick={showModal}>
-        Open Modal
-      </Button>
       <Modal
-        title="Basic Modal"
+        title="Редактировать"
         open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
+        onOk={closeModal}
+        onCancel={closeModal}
+        okText="Сохранить"
+        cancelText="Отмена"
       >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        <Input className="modal__input" placeholder="Категория" />
+        <Row className="modal__row" gutter={[16, 0]}>
+          <Col flex={1}>
+            <Input placeholder="Сумма" />
+          </Col>
+          <Col flex={1}>
+            <DatePicker
+              placeholder="Дата"
+              className="modal__date"
+              onChange={onChange}
+            />
+          </Col>
+        </Row>
+        <TextArea
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder="Controlled autosize"
+          autoSize={{ minRows: 3, maxRows: 5 }}
+        />
       </Modal>
     </>
   )

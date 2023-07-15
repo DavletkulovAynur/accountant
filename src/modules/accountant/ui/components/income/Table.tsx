@@ -3,11 +3,11 @@ import { Table } from 'antd'
 import { Item, testData } from './types'
 import { EditOutlined } from '@ant-design/icons'
 
-const MainTable: React.FC<any> = memo(({ form }) => {
+const MainTable: React.FC<any> = memo(({ openModal }) => {
   const [data] = useState(testData)
 
   const edit = (record: Partial<Item> & { key: React.Key }) => {
-    console.log('test')
+    openModal(record)
   }
 
   const columns = [
@@ -39,9 +39,7 @@ const MainTable: React.FC<any> = memo(({ form }) => {
       title: 'operation',
       dataIndex: 'operation',
       render: (_: any, record: Item) => {
-        return (
-          <EditOutlined onClick={() => edit(record)}/>
-        )
+        return <EditOutlined onClick={() => edit(record)} />
       },
     },
   ]

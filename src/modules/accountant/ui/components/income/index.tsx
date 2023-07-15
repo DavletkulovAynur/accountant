@@ -1,18 +1,25 @@
-import React, { memo } from 'react'
+import React, { memo, useState } from 'react'
 import { Form } from 'antd'
 import { MainTable } from './Table'
 import { EditModal } from './EditModal'
+import './style/index.scss'
 
 const Income: React.FC = memo(() => {
   const [form] = Form.useForm()
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
-  //TODO: modal
-  
- 
+  const openModal = () => {
+    setIsModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+  }
+
   return (
     <Form form={form} component={false}>
-      <MainTable form={form}/>
-      <EditModal />
+      <MainTable form={form} openModal={openModal} />
+      <EditModal closeModal={closeModal} isModalOpen={isModalOpen} />
     </Form>
   )
 })
