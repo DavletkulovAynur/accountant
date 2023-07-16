@@ -16,6 +16,8 @@ const Income: React.FC = memo(() => {
     setIsModalOpen(false)
   }
 
+  //TODO: отправка данных
+
   return (
     <Form form={form} component={false}>
       <MainTable form={form} openModal={openModal} />
