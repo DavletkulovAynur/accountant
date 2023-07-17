@@ -7,11 +7,18 @@
     margin-bottom: 16px;
   }
 
+  &__date-wrapper {
+    margin-bottom: 16px;
+  }
   &__date {
     width: 100%;
   }
 
   &__test {
     width: 50%;
+  }
+
+  &__buttons {
+    margin-top: 32px;
   }
 }
