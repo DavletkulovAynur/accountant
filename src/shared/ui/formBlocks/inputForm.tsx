@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { Controller, Control } from 'react-hook-form'
+import { Controller, useFormContext } from 'react-hook-form'
 import { Input } from 'antd'
 
 //FIXME: useRef это что
@@ -12,15 +12,8 @@ type FormValues = {
 }
 
 const InputForm: any = memo(
-  ({
-    control,
-    name,
-    placeholder,
-  }: {
-    control: Control<FormValues>
-    name: any
-    placeholder: string
-  }) => {
+  ({ name, placeholder }: { name: any; placeholder: string }) => {
+    const { control } = useFormContext()
     return (
       <Controller
         name={name}
