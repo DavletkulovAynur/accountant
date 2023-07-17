@@ -1,64 +1,53 @@
 import { memo } from 'react'
-import type { DatePickerProps } from 'antd'
-import { DatePicker } from 'antd'
 import { Col, Row } from 'antd'
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form'
-import { Input } from 'antd'
-import { InputForm } from 'shared/ui/formBlocks'
+import { RHFInput, RHFDatePickerField, RHFTextArea } from 'shared/ui/RHF'
 import { Button } from 'antd'
 import { CurrencyType } from './currencyType'
+import dayjs from 'dayjs'
+import { IFormFields } from './types'
 
-const { TextArea } = Input
-
-type Inputs = {
-  category: string
-  amount: number
-  currency?: string
-}
+//FIXME: Починить buttons
 
 const EditFormModal = memo(() => {
-  const methods = useForm<Inputs>({
+  const methods = useForm<IFormFields>({
     defaultValues: {
       category: 'hello',
       amount: 123,
       currency: 'USD',
+      date: '',
+      description: '',
     },
   })
-  const onChange: DatePickerProps['onChange'] = (date, dateString) => {
-    console.log(date, dateString)
-  }
 
   const { handleSubmit } = methods
 
-  const sendEditData: SubmitHandler<Inputs> = (data) => {
-    console.log('data', data)
+  //FIXME: send
+  const sendEditData: SubmitHandler<IFormFields> = (data) => {
+    console.log(dayjs(data.date).format('X'))
   }
 
   return (
     <FormProvider {...methods}>
       <div className="modal__input">
-        <InputForm name="category" placeholder="Категория" />
+        <RHFInput name="category" placeholder="Категория" />
       </div>
+      <div className="modal__date-wrapper">
+        <RHFDatePickerField name="date" />
+      </div>
+
       <Row className="modal__row" gutter={[8, 0]}>
         <Col span={20}>
-          <InputForm name="amount" placeholder="Сумма" />
+          <RHFInput name="amount" placeholder="Сумма" />
         </Col>
         <Col span={4}>
           <CurrencyType name="currency" />
         </Col>
       </Row>
-      <Col flex={1}>
-        <DatePicker
-          placeholder="Дата"
-          className="modal__date"
-          onChange={onChange}
-        />
-      </Col>
-      <TextArea
-        placeholder="Controlled autosize"
-        autoSize={{ minRows: 3, maxRows: 5 }}
-      />
-      <Row gutter={[16, 0]}>
+      <div className="modal__input">
+        <RHFTextArea name="description" />
+      </div>
+      <Row className="modal__buttons" gutter={[16, 0]}>
         <Col span={8}>
           <Button block>Отмена</Button>
         </Col>
@@ -72,5 +61,4 @@ const EditFormModal = memo(() => {
   )
 })
 
-//TODO: в какой валюте???
 export { EditFormModal }

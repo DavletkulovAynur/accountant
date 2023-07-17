@@ -11,7 +11,7 @@ type FormValues = {
   amount: number
 }
 
-const InputForm: any = memo(
+const RHFInput: any = memo(
   ({ name, placeholder }: { name: any; placeholder: string }) => {
     const { control } = useFormContext()
     return (
@@ -24,4 +24,4 @@ const InputForm: any = memo(
   }
 )
 
-export { InputForm }
+export { RHFInput }
