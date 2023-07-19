@@ -13,3 +13,8 @@
 - docker rm: delete container
 
 #### Docker build
+
+
+### Type script
+
+- void: пустой тип
