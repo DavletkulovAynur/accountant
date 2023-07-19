@@ -1,3 +1,0 @@
-const testRTKQuery = () => {
-  return <>useRtkQuery</>
-}
