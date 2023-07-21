@@ -1,4 +1,4 @@
-import { memo } from "react"
+import { memo } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 import { DatePicker } from 'antd'
 
@@ -9,11 +9,17 @@ const RHFDatePickerField = memo(({ name }: { name: any }) => {
       name={name}
       control={control}
       rules={{ required: true }}
-      render={({ field }) => (
-        <DatePicker {...field} placeholder="Дата" className="modal__date" />
+      render={({ field, fieldState: { error } }) => (
+        <DatePicker
+          {...field}
+          status={error && 'error'}
+          format="DD.MM.YYYY"
+          placeholder="Дата"
+          className="modal__date"
+        />
       )}
     />
   )
 })
 
-export {RHFDatePickerField}
+export { RHFDatePickerField }

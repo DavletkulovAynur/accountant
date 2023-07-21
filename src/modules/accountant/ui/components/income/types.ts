@@ -21,6 +21,13 @@ export const testData = [
     category: 'Работа',
     amount: 120000,
     deskription: 'London Park no',
-    date: '12.01.2022'
+    date: '12.01.2022',
   },
 ]
+
+interface EnumCurrency {
+  value: string
+  label: string
+}
+
+export interface ISelectCurrency extends Array<EnumCurrency> {}
