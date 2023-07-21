@@ -1,30 +1,40 @@
 import { memo } from 'react'
 import { Col, Row } from 'antd'
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form'
-import { RHFInput, RHFDatePickerField, RHFTextArea } from 'shared/ui/RHF'
+import {
+  RHFInput,
+  RHFDatePickerField,
+  RHFTextArea,
+  RHFSelect,
+} from 'shared/ui/RHF'
 import { Button } from 'antd'
-import { CurrencyType } from './currencyType'
-import dayjs from 'dayjs'
 import { IFormFields } from './types'
+import { useSendIncomeMutation } from 'modules/accountant/domain'
+import { ISelectCurrency } from '../types'
 
-//FIXME: Починить buttons
+//FIXME: где хранить
+const selectCurrency: ISelectCurrency = [
+  { value: 'RUB', label: 'RUB' },
+  { value: 'USD', label: 'USD' },
+  { value: 'ARS', label: 'ARS' },
+]
 
 const EditFormModal = memo(() => {
+  const [sendIncome] = useSendIncomeMutation()
   const methods = useForm<IFormFields>({
     defaultValues: {
       category: 'hello',
       amount: 123,
       currency: 'USD',
-      date: '',
+      date: null,
       description: '',
     },
   })
 
   const { handleSubmit } = methods
 
-  //FIXME: send
   const sendEditData: SubmitHandler<IFormFields> = (data) => {
-    console.log(dayjs(data.date).format('X'))
+    sendIncome(data)
   }
 
   return (
@@ -41,7 +51,7 @@ const EditFormModal = memo(() => {
           <RHFInput name="amount" placeholder="Сумма" />
         </Col>
         <Col span={4}>
-          <CurrencyType name="currency" />
+          <RHFSelect name="currency" selectCurrency={selectCurrency} />
         </Col>
       </Row>
       <div className="modal__input">
