@@ -1,10 +1,10 @@
-import { IFormFields } from 'modules/accountant/ui/components/income/form/types'
+import { IFormFields } from 'modules/accountant/ui/components/operationForm/types'
 import { accountantApi } from '../api'
 
 const api = accountantApi.injectEndpoints({
   endpoints: (build) => ({
     getItemList: build.query<any, void>({
-      query: () => ({ url: `posts/1` }),
+      query: () => ({ url: `/accountant` }),
     }),
     sendIncome: build.mutation<void, IFormFields>({
       query(body) {

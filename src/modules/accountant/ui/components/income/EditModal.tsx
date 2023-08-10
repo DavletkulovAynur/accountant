@@ -1,6 +1,6 @@
-import { memo, FC, useState } from 'react'
+import { memo, FC } from 'react'
 import { Modal } from 'antd'
-import { EditFormModal } from './form'
+import { OperationForm } from '../operationForm'
 
 //FIXME: одна из задач исправить дату
 const EditModal: FC<any> = memo(({ closeModal, isModalOpen }) => {
@@ -12,7 +12,7 @@ const EditModal: FC<any> = memo(({ closeModal, isModalOpen }) => {
         footer={null}
         onCancel={closeModal}
       >
-        <EditFormModal />
+        <OperationForm />
       </Modal>
     </>
   )
