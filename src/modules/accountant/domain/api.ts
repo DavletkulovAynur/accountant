@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const accountantApi = createApi({
   reducerPath: 'accountantApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://jsonplaceholder.typicode.com/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001' }),
   // tagTypes: ['Time', 'Posts', 'Counter'],
   endpoints: () => ({}),
 })

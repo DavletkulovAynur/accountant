@@ -10,30 +10,30 @@ const MainTable: React.FC<any> = memo(({ openModal }) => {
     openModal(record)
   }
 
+  //Return correctly amount with currency
   const columns = [
     {
       title: 'категория',
       dataIndex: 'category',
       width: '25%',
-      editable: true,
     },
     {
       title: 'сумма',
       dataIndex: 'amount',
       width: '15%',
-      editable: true,
+      render: (item: any) => {
+        return 10000
+      },
     },
     {
       title: 'дата',
       dataIndex: 'date',
       width: '15%',
-      editable: true,
     },
     {
       title: 'описание',
       dataIndex: 'deskription',
       width: '40%',
-      editable: true,
     },
     {
       title: 'operation',
