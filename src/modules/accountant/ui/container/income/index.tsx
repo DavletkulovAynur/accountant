@@ -1,17 +1,17 @@
 import React, { memo, useState } from 'react'
 import { Form } from 'antd'
 import { MainTable } from './Table'
-import { EditModal } from './EditModal'
 import './style/index.scss'
 import { useGetItemListQuery } from 'modules/accountant/domain'
+import { EditModal } from '../../components/editModal'
 
 const Income: React.FC = memo(() => {
   const [form] = Form.useForm()
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const { data } = useGetItemListQuery()
-  
+  // const { data } = useGetItemListQuery()
 
-  const openModal = () => {
+  const openModal = (record: any) => {
+    console.log(record)
     setIsModalOpen(true)
   }
 
@@ -19,7 +19,6 @@ const Income: React.FC = memo(() => {
     setIsModalOpen(false)
   }
 
-  console.log('data', data)
   return (
     <Form form={form} component={false}>
       <MainTable form={form} openModal={openModal} />

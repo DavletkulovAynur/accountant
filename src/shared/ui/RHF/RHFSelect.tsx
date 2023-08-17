@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { Select } from 'antd'
 import { Controller, useFormContext } from 'react-hook-form'
-import { ISelectCurrency } from 'modules/accountant/ui/components/income/types'
+import { ISelectCurrency } from 'modules/accountant/ui/container/income/types'
 
 const RHFSelect = memo(
   ({

@@ -15,6 +15,7 @@ export interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode
 }
 
+//FIXME: нужно добавить id 
 export const testData = [
   {
     key: '1',

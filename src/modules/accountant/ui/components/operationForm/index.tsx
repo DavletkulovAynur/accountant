@@ -10,7 +10,7 @@ import {
 import { Button } from 'antd'
 import { IFormFields } from './types'
 import { useSendIncomeMutation } from 'modules/accountant/domain'
-import { ISelectCurrency } from '../income/types' 
+import { ISelectCurrency } from '../../container/income/types'
 
 //FIXME: где хранить
 const selectCurrency: ISelectCurrency = [
@@ -19,10 +19,10 @@ const selectCurrency: ISelectCurrency = [
   { value: 'ARS', label: 'ARS' },
 ]
 
-//FIXME: как это все работает без провайдера 
+//FIXME: как это все работает без провайдера
 
 const OperationForm = memo(() => {
-  const [sendIncome] = useSendIncomeMutation()
+  const [sendIncome, { isLoading }] = useSendIncomeMutation()
   const methods = useForm<IFormFields>({
     defaultValues: {
       category: 'hello',
@@ -64,7 +64,12 @@ const OperationForm = memo(() => {
           <Button block>Отмена</Button>
         </Col>
         <Col span={8}>
-          <Button onClick={handleSubmit(sendEditData)} type="primary" block>
+          <Button
+            loading={isLoading}
+            onClick={handleSubmit(sendEditData)}
+            type="primary"
+            block
+          >
             Сохранить
           </Button>
         </Col>
