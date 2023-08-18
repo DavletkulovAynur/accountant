@@ -29,3 +29,7 @@ const Income: React.FC = memo(() => {
 
 export { Income }
 //FIXME: FORM
+// чему я должен научиться 
+// Архитектура фронтенд приложения 
+// RTK Query - как работает основные моменты 
+// Redux Toolkit - как подключать и как работать 
