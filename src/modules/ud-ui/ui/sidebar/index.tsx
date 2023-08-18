@@ -1,39 +1,23 @@
-import React, { useState, memo, FC } from 'react'
+import { memo, FC } from 'react'
 import { Layout, Menu } from 'antd'
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from '@ant-design/icons'
+import Test from './config'
+import './index.scss'
 
 const { Sider } = Layout
 
 const Sidebar: FC = memo(() => {
-  const [collapsed, setCollapsed] = useState(false)
+  const test = (item: any) => {
+    console.log(item)
+  }
   return (
-    <Sider trigger={null} collapsible collapsed={collapsed}>
+    <Sider className="Sidebar" trigger={null}>
       <div className="demo-logo-vertical" />
       <Menu
+        onSelect={test}
         theme="dark"
         mode="inline"
         defaultSelectedKeys={['1']}
-        items={[
-          {
-            key: '1',
-            icon: <UserOutlined />,
-            label: 'Расходы и доходы',
-          },
-          {
-            key: '2',
-            icon: <VideoCameraOutlined />,
-            label: 'Накопления и долги',
-          },
-          {
-            key: '3',
-            icon: <VideoCameraOutlined />,
-            label: 'Документы',
-          },
-        ]}
+        items={Test()}
       />
     </Sider>
   )
