@@ -1,14 +1,15 @@
 import React, { memo, useState } from 'react'
-
-import { Layout, theme } from 'antd'
+import { Layout } from 'antd'
 import { Tabs } from 'antd'
 import type { TabsProps } from 'antd'
-import { Income } from './income'
 import { PlusOutlined } from '@ant-design/icons'
-import { CreateOperationModal } from '../components/createOperation'
+import { Income } from './income'
 import { Expenses } from './expenses'
+import { CreateOperationModal } from '../components/createOperation'
+import css from './styles.module.scss'
 
 const { Content } = Layout
+const { TabPane } = Tabs
 
 const items: TabsProps['items'] = [
   {
@@ -26,9 +27,6 @@ const items: TabsProps['items'] = [
 const AccountantContainer: React.FC = memo(() => {
   const [isOpenCreateOperationModal, setIsOpenCreateOperationModal] =
     useState(false)
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken()
 
   const onChange = (key: string) => {
     console.log(key)
@@ -43,28 +41,23 @@ const AccountantContainer: React.FC = memo(() => {
   }
 
   return (
-    <Content
-      style={{
-        margin: '24px 16px',
-        padding: 24,
-        minHeight: 280,
-        background: colorBgContainer,
-      }}
-    >
-      <>
-        <div>
-          <PlusOutlined
-            style={{ fontSize: '24px' }}
-            onClick={openCreateOperationModal}
-          />
-        </div>
+    <Content className={css.accountantContent}>
+      <PlusOutlined
+        className={css.plusIconStyle}
+        onClick={openCreateOperationModal}
+      />
 
-        <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
-        <CreateOperationModal
-          isOpenCreateOperationModal={isOpenCreateOperationModal}
-          closeModal={closeCreateOperationModal}
-        />
-      </>
+      <Tabs defaultActiveKey="1" onChange={onChange}>
+        {items.map((item) => (
+          <TabPane tab={item.label} key={item.key}>
+            {item.children}
+          </TabPane>
+        ))}
+      </Tabs>
+      <CreateOperationModal
+        isOpenCreateOperationModal={isOpenCreateOperationModal}
+        closeModal={closeCreateOperationModal}
+      />
     </Content>
   )
 })
