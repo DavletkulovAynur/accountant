@@ -26,3 +26,4 @@
  - pages
  - modules
 
+//TODO: запустить в docker
