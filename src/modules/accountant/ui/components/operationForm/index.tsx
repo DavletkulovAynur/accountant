@@ -10,7 +10,7 @@ import {
 import { Button } from 'antd'
 import { IFormFields } from './types'
 import { useSendIncomeMutation } from 'modules/accountant/domain'
-import { ISelectCurrency } from '../../container/income/types'
+import { ISelectCurrency } from '../../containers/income/types'
 
 //FIXME: где хранить
 const selectCurrency: ISelectCurrency = [
