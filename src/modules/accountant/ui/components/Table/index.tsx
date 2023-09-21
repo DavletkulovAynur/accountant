@@ -1,9 +1,25 @@
 import React, { memo, useState } from 'react'
 import { Table } from 'antd'
-import { Item, testData } from './types'
 import { EditOutlined } from '@ant-design/icons'
 
-const MainTable: React.FC<any> = memo(({ openModal }) => {
+export interface Item {
+  key: string
+  category: string
+  amount: number
+  deskription: string
+}
+
+export const testData = [
+  {
+    key: '1',
+    category: 'Работа',
+    amount: 120000,
+    deskription: 'London Park no',
+    date: '12.01.2022',
+  },
+]
+
+const DefaulTable: React.FC<any> = memo(({ openModal }) => {
   const [data] = useState(testData)
 
   const edit = (record: Partial<Item> & { key: React.Key }) => {
@@ -60,4 +76,4 @@ const MainTable: React.FC<any> = memo(({ openModal }) => {
   )
 })
 
-export { MainTable }
+export { DefaulTable }

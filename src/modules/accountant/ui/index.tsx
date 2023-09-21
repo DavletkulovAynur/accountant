@@ -1,9 +1,65 @@
-import React, { memo } from 'react'
+import React, { memo, useState } from 'react'
+import { Layout } from 'antd'
+import { Tabs } from 'antd'
+import type { TabsProps } from 'antd'
+import { PlusOutlined } from '@ant-design/icons'
+import { Income } from './containers/Income'
+import { Expenses } from './containers/Expenses'
+import { CreateOperationModal } from './components/createOperation'
+import css from './styles.module.scss'
 
-import { AccountantContainer } from './containers'
+const { Content } = Layout
+const { TabPane } = Tabs
+
+const items: TabsProps['items'] = [
+  {
+    key: '1',
+    label: `Расходы`,
+    children: <Expenses />,
+  },
+  {
+    key: '2',
+    label: `Доходы`,
+    children: <Income />,
+  },
+]
 
 const Accountant: React.FC = memo(() => {
-  return <AccountantContainer />
+  const [isOpenCreateOperationModal, setIsOpenCreateOperationModal] =
+    useState(false)
+
+  const onChange = (key: string) => {
+    console.log(key)
+  }
+
+  const openCreateOperationModal = () => {
+    setIsOpenCreateOperationModal(true)
+  }
+
+  const closeCreateOperationModal = () => {
+    setIsOpenCreateOperationModal(false)
+  }
+
+  return (
+    <Content className={css.accountantContent}>
+      <PlusOutlined
+        className={css.plusIconStyle}
+        onClick={openCreateOperationModal}
+      />
+
+      <Tabs defaultActiveKey="1" onChange={onChange}>
+        {items.map((item) => (
+          <TabPane tab={item.label} key={item.key}>
+            {item.children}
+          </TabPane>
+        ))}
+      </Tabs>
+      <CreateOperationModal
+        isOpenCreateOperationModal={isOpenCreateOperationModal}
+        closeModal={closeCreateOperationModal}
+      />
+    </Content>
+  )
 })
 
 export { Accountant }

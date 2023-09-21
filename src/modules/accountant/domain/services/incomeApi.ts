@@ -5,13 +5,13 @@ import { EEndpoints } from 'config'
 const api = accountantApi.injectEndpoints({
   endpoints: (build) => ({
     getItemList: build.query<any, void>({
-      query: () => ({ url: `${EEndpoints.OPERATIONS}` }),
+      query: () => ({ url: `${EEndpoints.CREAT_INCOME_OPERATION}` }),
     }),
     sendIncome: build.mutation<void, IFormFields>({
       query(body) {
         return {
-          url: `increment`,
-          method: 'PATCH',
+          url: `${EEndpoints.CREAT_INCOME_OPERATION}`,
+          method: 'POST',
           body,
         }
       },
