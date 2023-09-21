@@ -1,14 +1,13 @@
-import React, { memo, useState } from 'react'
+import React, { useState } from 'react'
 import { Form } from 'antd'
-import { MainTable } from './Table'
-import './style/index.scss'
-import { useGetItemListQuery } from 'modules/accountant/domain'
-import { EditModal } from '../../components/editModal'
+// import { MainTable } from './Table'
+// import './style/index.scss'
+import { EditModal } from '../components/editModal'
+import { DefaulTable } from '../components/Table'
 
-const Income: React.FC = memo(() => {
+export const Income = () => {
   const [form] = Form.useForm()
   const [isModalOpen, setIsModalOpen] = useState(false)
-  // const { data } = useGetItemListQuery()
 
   const openModal = (record: any) => {
     console.log(record)
@@ -21,10 +20,8 @@ const Income: React.FC = memo(() => {
 
   return (
     <Form form={form} component={false}>
-      <MainTable form={form} openModal={openModal} />
+      <DefaulTable form={form} openModal={openModal} />
       <EditModal closeModal={closeModal} isModalOpen={isModalOpen} />
     </Form>
   )
-})
-
-export { Income }
+}
