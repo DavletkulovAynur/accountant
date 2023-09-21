@@ -1,7 +1,5 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Form } from 'antd'
-// import { MainTable } from './Table'
-// import './style/index.scss'
 import { EditModal } from '../components/editModal'
 import { DefaulTable } from '../components/Table'
 
@@ -10,7 +8,6 @@ export const Income = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const openModal = (record: any) => {
-    console.log(record)
     setIsModalOpen(true)
   }
 

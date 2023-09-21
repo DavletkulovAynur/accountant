@@ -2,7 +2,7 @@ import React, { memo, useState } from 'react'
 import { Layout } from 'antd'
 import { Tabs } from 'antd'
 import type { TabsProps } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
+import { PlusCircleTwoTone, PlusOutlined } from '@ant-design/icons'
 import { Income } from './containers/Income'
 import { Expenses } from './containers/Expenses'
 import { CreateOperationModal } from './components/createOperation'
@@ -42,7 +42,11 @@ const Accountant: React.FC = memo(() => {
 
   return (
     <Content className={css.accountantContent}>
-      <PlusOutlined
+      {/* <PlusOutlined
+        className={css.plusIconStyle}
+        onClick={openCreateOperationModal}
+      /> */}
+      <PlusCircleTwoTone
         className={css.plusIconStyle}
         onClick={openCreateOperationModal}
       />

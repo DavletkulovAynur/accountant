@@ -1,8 +1,8 @@
 import { memo } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
-import { Input } from '../components'
+import { CurrencyInput } from '../components'
 
-const RHFInput: any = memo(
+const RHFCurrencyInput: any = memo(
   ({ name, placeholder }: { name: any; placeholder: string }) => {
     const { control } = useFormContext()
     return (
@@ -11,11 +11,11 @@ const RHFInput: any = memo(
         control={control}
         rules={{ required: true }}
         render={({ field, fieldState: { error } }) => (
-          <Input error={error} placeholder={placeholder} {...field} />
+          <CurrencyInput error={error} placeholder={placeholder} {...field} />
         )}
       />
     )
   }
 )
 
-export { RHFInput }
+export { RHFCurrencyInput }

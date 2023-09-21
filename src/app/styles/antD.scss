@@ -1,0 +1,14 @@
+.ant-picker {
+  padding: 8px 12px;
+  width: 100%;
+}
+
+//FIXME: delete custom style
+.ant-select-selector {
+  border: none !important;
+
+  &:hover {
+    box-shadow: none !important;
+    border: none !important;
+  }
+}
