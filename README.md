@@ -6,4 +6,4 @@
  - modules
 
 //TODO: запустить в docker
-- Проблемы
+- 1 Currency input как прописать стили 
