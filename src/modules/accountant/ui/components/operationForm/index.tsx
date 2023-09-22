@@ -13,12 +13,14 @@ import { RHFCurrencyInput } from 'shared/ui/RHF/RHFCurrencyInput'
 import css from './styles.module.scss'
 import { CURRENCY_NAMES, currencySelectors } from 'shared/enums'
 import { useCreateNewOperationMutation } from 'modules/accountant/domain'
+import { RHFRadioTab } from 'shared/ui/RHF/RHFRadioTab'
 
 //  TODO:
 const OperationForm = memo(({ closeModal }: any) => {
   const [createOperation, { isLoading }] = useCreateNewOperationMutation()
   const methods = useForm<IFormFields>({
     defaultValues: {
+      operationType: 'income',
       category: '',
       amount: null,
       currency: CURRENCY_NAMES.USD,
@@ -36,6 +38,9 @@ const OperationForm = memo(({ closeModal }: any) => {
 
   return (
     <FormProvider {...methods}>
+      <div className={css.wrapper}>
+        <RHFRadioTab name="operationType" />
+      </div>
       <div className={css.wrapper}>
         <RHFInput name="category" placeholder="Category" />
       </div>
