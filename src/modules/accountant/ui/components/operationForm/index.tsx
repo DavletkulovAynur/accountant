@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useEffect } from 'react'
 import { Col, Row } from 'antd'
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form'
 import {
@@ -9,28 +9,29 @@ import {
 } from 'shared/ui/RHF'
 import { Button } from 'antd'
 import { IFormFields } from './types'
-import { useSendIncomeMutation } from 'modules/accountant/domain'
 import { RHFCurrencyInput } from 'shared/ui/RHF/RHFCurrencyInput'
-import { currencies } from 'config'
 import css from './styles.module.scss'
+import { CURRENCY_NAMES, currencySelectors } from 'shared/enums'
+import { useCreateNewOperationMutation } from 'modules/accountant/domain'
 
-const OperationForm = memo(() => {
-  const [sendIncome, { isLoading }] = useSendIncomeMutation()
-
+//  TODO:
+const OperationForm = memo(({ closeModal }: any) => {
+  const [createOperation, { isLoading }] = useCreateNewOperationMutation()
   const methods = useForm<IFormFields>({
     defaultValues: {
       category: '',
       amount: null,
-      currency: 'USD',
+      currency: CURRENCY_NAMES.USD,
       date: null,
       description: '',
     },
   })
 
-  const { handleSubmit } = methods
+  const { handleSubmit, watch } = methods
+  const suffix: CURRENCY_NAMES = watch('currency') as CURRENCY_NAMES
 
   const sendEditData: SubmitHandler<IFormFields> = async (data) => {
-    sendIncome(data)
+    createOperation(data)
   }
 
   return (
@@ -44,10 +45,14 @@ const OperationForm = memo(() => {
       <div className={css.wrapper}>
         <Row className="modal__row" gutter={[8, 0]}>
           <Col span={20}>
-            <RHFCurrencyInput name="amount" placeholder="amount" />
+            <RHFCurrencyInput
+              suffix={suffix}
+              name="amount"
+              placeholder="amount"
+            />
           </Col>
           <Col span={4}>
-            <RHFSelect name="currency" selectCurrency={currencies} />
+            <RHFSelect name="currency" selectCurrency={currencySelectors} />
           </Col>
         </Row>
       </div>
@@ -56,7 +61,9 @@ const OperationForm = memo(() => {
       </div>
       <Row className="modal__buttons" gutter={[16, 0]}>
         <Col span={8}>
-          <Button block>Отмена</Button>
+          <Button onClick={closeModal} block>
+            Отмена
+          </Button>
         </Col>
         <Col span={8}>
           <Button

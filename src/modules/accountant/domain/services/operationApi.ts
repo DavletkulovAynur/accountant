@@ -4,13 +4,10 @@ import { EEndpoints } from 'config'
 
 const api = accountantApi.injectEndpoints({
   endpoints: (build) => ({
-    getItemList: build.query<any, void>({
-      query: () => ({ url: `${EEndpoints.CREAT_INCOME_OPERATION}` }),
-    }),
-    sendIncome: build.mutation<void, IFormFields>({
+    createNewOperation: build.mutation<void, IFormFields>({
       query(body) {
         return {
-          url: `${EEndpoints.CREAT_INCOME_OPERATION}`,
+          url: `${EEndpoints.CREAT_NEW_OPERATION}`,
           method: 'POST',
           body,
         }
@@ -19,4 +16,4 @@ const api = accountantApi.injectEndpoints({
   }),
 })
 
-export const { useGetItemListQuery, useSendIncomeMutation } = api
+export const { useCreateNewOperationMutation } = api

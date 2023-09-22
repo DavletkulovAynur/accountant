@@ -14,7 +14,7 @@ const RHFDatePickerField = memo(({ name }: { name: any }) => {
           {...field}
           status={error && 'error'}
           format="DD.MM.YYYY"
-          placeholder="Дата"
+          placeholder="Date"
           className="modal__date"
         />
       )}
