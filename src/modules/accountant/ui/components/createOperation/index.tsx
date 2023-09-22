@@ -12,7 +12,7 @@ const CreateOperationModal: FC<any> = memo(
           footer={null}
           onCancel={closeModal}
         >
-          <OperationForm />
+          <OperationForm closeModal={closeModal} />
         </Modal>
       </>
     )

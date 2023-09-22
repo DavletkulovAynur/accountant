@@ -42,10 +42,6 @@ const Accountant: React.FC = memo(() => {
 
   return (
     <Content className={css.accountantContent}>
-      {/* <PlusOutlined
-        className={css.plusIconStyle}
-        onClick={openCreateOperationModal}
-      /> */}
       <PlusCircleTwoTone
         className={css.plusIconStyle}
         onClick={openCreateOperationModal}
