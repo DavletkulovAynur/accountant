@@ -7,7 +7,7 @@ const CreateOperationModal: FC<any> = memo(
     return (
       <>
         <Modal
-          title="Редактировать"
+          title="Add new operation"
           open={isOpenCreateOperationModal}
           footer={null}
           onCancel={closeModal}
