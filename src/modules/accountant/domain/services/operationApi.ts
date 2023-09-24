@@ -4,6 +4,14 @@ import { EEndpoints } from 'config'
 
 const api = accountantApi.injectEndpoints({
   endpoints: (build) => ({
+    getAllExpensesOperations: build.query<any, void>({
+      query() {
+        return {
+          url: `${EEndpoints.GET_ALL_EXPENSE_OPERATIONS}`,
+          method: 'GET',
+        }
+      },
+    }),
     createNewOperation: build.mutation<void, IFormFields>({
       query(body) {
         return {
@@ -16,4 +24,7 @@ const api = accountantApi.injectEndpoints({
   }),
 })
 
-export const { useCreateNewOperationMutation } = api
+export const {
+  useCreateNewOperationMutation,
+  useGetAllExpensesOperationsQuery,
+} = api

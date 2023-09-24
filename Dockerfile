@@ -1,4 +1,4 @@
-FROM node:18.16.1
+FROM node:18-alpine
 
 WORKDIR /app
 
@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . .
 
-ENV PORT 4200
+ENV PORT 3000
 
 EXPOSE $PORT
 

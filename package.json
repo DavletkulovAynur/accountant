@@ -15,6 +15,7 @@
     "antd": "^5.5.2",
     "compose-function": "^3.0.3",
     "concurrently": "^8.2.0",
+    "dateformat": "^5.0.3",
     "dayjs": "^1.11.9",
     "prettier": "^2.8.8",
     "react": "^18.2.0",
@@ -59,6 +60,7 @@
   },
   "devDependencies": {
     "@types/compose-function": "^0.0.30",
+    "@types/dateformat": "^5.0.0",
     "@types/react-router": "^5.1.20",
     "@types/react-router-dom": "^5.3.3",
     "json-server": "^0.17.3"
