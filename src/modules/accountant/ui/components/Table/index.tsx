@@ -1,6 +1,7 @@
-import React, { memo, useState } from 'react'
-import { Table } from 'antd'
+import React, { memo } from 'react'
+import { Empty, Table } from 'antd'
 import { EditOutlined } from '@ant-design/icons'
+import dateFormat from 'dateformat'
 
 export interface Item {
   key: string
@@ -9,52 +10,39 @@ export interface Item {
   deskription: string
 }
 
-export const testData = [
-  {
-    key: '1',
-    category: 'Работа',
-    amount: 120000,
-    deskription: 'London Park no',
-    date: '12.01.2022',
-  },
-]
-
-const DefaulTable: React.FC<any> = memo(({ openModal }) => {
-  const [data] = useState(testData)
-
-  const edit = (record: Partial<Item> & { key: React.Key }) => {
+const DefaulTable: React.FC<any> = memo(({ openModal, data = [] }) => {
+  const edit = (record: any) => {
     openModal(record)
   }
 
-  //Return correctly amount with currency
   const columns = [
     {
-      title: 'категория',
+      title: 'CATEGORY',
       dataIndex: 'category',
       width: '25%',
     },
     {
-      title: 'сумма',
+      title: 'AMOUNT',
       dataIndex: 'amount',
       width: '15%',
+    },
+    {
+      title: 'DATE',
+      dataIndex: 'date',
+      width: '15%',
       render: (item: any) => {
-        return 10000
+        return dateFormat(item, 'mmmm dS, yyyy')
       },
     },
     {
-      title: 'дата',
-      dataIndex: 'date',
-      width: '15%',
-    },
-    {
-      title: 'описание',
+      title: 'DESKRIPTION',
       dataIndex: 'deskription',
       width: '40%',
     },
     {
-      title: 'operation',
+      title: 'OPERATIONS',
       dataIndex: 'operation',
-      render: (_: any, record: Item) => {
+      render: (_: any, record: any) => {
         return <EditOutlined onClick={() => edit(record)} />
       },
     },
@@ -65,6 +53,10 @@ const DefaulTable: React.FC<any> = memo(({ openModal }) => {
       ...col,
     }
   })
+
+  if (!data.length) {
+    return <Empty />
+  }
 
   return (
     <Table
