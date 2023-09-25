@@ -11,6 +11,7 @@ const api = accountantApi.injectEndpoints({
           method: 'GET',
         }
       },
+      providesTags: ['ExpenseOperations'],
     }),
     createNewOperation: build.mutation<void, IFormFields>({
       query(body) {
@@ -20,6 +21,7 @@ const api = accountantApi.injectEndpoints({
           body,
         }
       },
+      invalidatesTags: ['ExpenseOperations'],
     }),
   }),
 })

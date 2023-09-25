@@ -17,7 +17,7 @@ export const Income = () => {
 
   return (
     <Form form={form} component={false}>
-      <DefaulTable form={form} openModal={openModal} />
+      <DefaulTable form={form} openModal={openModal} data={{}} />
       <EditModal closeModal={closeModal} isModalOpen={isModalOpen} />
     </Form>
   )
