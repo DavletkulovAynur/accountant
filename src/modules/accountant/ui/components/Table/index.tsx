@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Empty, Table } from 'antd'
+import { Table } from 'antd'
 import { EditOutlined } from '@ant-design/icons'
 import dateFormat from 'dateformat'
 
@@ -10,10 +10,12 @@ export interface Item {
   deskription: string
 }
 
-const DefaulTable: React.FC<any> = memo(({ openModal, data = [] }) => {
+const DefaulTable: React.FC<any> = memo(({ openModal, operationsQuery }) => {
   const edit = (record: any) => {
     openModal(record)
   }
+
+  const { data = [], isLoading } = operationsQuery
 
   const columns = [
     {
@@ -36,7 +38,7 @@ const DefaulTable: React.FC<any> = memo(({ openModal, data = [] }) => {
     },
     {
       title: 'DESKRIPTION',
-      dataIndex: 'deskription',
+      dataIndex: 'description',
       width: '40%',
     },
     {
@@ -54,12 +56,9 @@ const DefaulTable: React.FC<any> = memo(({ openModal, data = [] }) => {
     }
   })
 
-  if (!data.length) {
-    return <Empty />
-  }
-
   return (
     <Table
+      loading={isLoading}
       bordered
       dataSource={data}
       columns={mergedColumns}

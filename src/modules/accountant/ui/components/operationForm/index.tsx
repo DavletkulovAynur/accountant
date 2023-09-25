@@ -29,11 +29,12 @@ const OperationForm = memo(({ closeModal }: any) => {
     },
   })
 
-  const { handleSubmit, watch } = methods
+  const { handleSubmit, watch, reset } = methods
   const suffix: CURRENCY_NAMES = watch('currency') as CURRENCY_NAMES
 
   const sendEditData: SubmitHandler<IFormFields> = async (data) => {
     createOperation(data)
+    reset()
   }
 
   return (
