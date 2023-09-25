@@ -6,6 +6,7 @@ import { Layout } from 'antd'
 import { Header, Sidebar } from 'modules/ud-ui'
 import { Auth } from 'modules/auth'
 import { Routing } from 'pages'
+import { useAuth } from 'shared/hooks'
 
 const AppProsess = () => {
   return (
@@ -29,8 +30,12 @@ const AuthProcess = () => {
   )
 }
 const Processes = () => {
-  const checkAuth: boolean = true
-  return checkAuth ? <AuthProcess /> : <AppProsess />
+  const { elementState } = useAuth()
+  if (elementState === null) {
+    return <h1>Loading</h1>
+  }
+  console.log('elementState', elementState)
+  return elementState ? <AppProsess /> : <AuthProcess />
 }
 
 //TODO: как работает withProviders

@@ -43,6 +43,10 @@
   }
 }
 
+.password {
+  padding: var(--input-padding);
+}
+
 .error {
   background-color: #ffffff;
   border-color: var(--error-color);
