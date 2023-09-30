@@ -7,6 +7,7 @@ import { Header, Sidebar } from 'modules/ud-ui'
 import { Auth } from 'modules/auth'
 import { Routing } from 'pages'
 import { useAuth } from 'shared/hooks'
+import { Spinner } from 'shared/ui/components'
 
 const AppProsess = () => {
   return (
@@ -32,7 +33,7 @@ const AuthProcess = () => {
 const Processes = () => {
   const { elementState } = useAuth()
   if (elementState === null) {
-    return <h1>Loading</h1>
+    return <Spinner />
   }
   console.log('elementState', elementState)
   return elementState ? <AppProsess /> : <AuthProcess />

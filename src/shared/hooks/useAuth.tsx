@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
 
 const useAuth = () => {
   const [elementState, setElementState] = useState<boolean | null>(null)
@@ -13,9 +13,18 @@ const useAuth = () => {
     }
   })
 
+  const logOut = async () => {
+    try {
+      await auth.signOut();
+    } catch (error) {
+      console.error('Ошибка разлогинивания:', error);
+    }
+  }
+
   // Возвращаем необходимые значения и функции
   return {
     elementState,
+    logOut
   }
 }
 
