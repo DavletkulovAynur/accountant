@@ -24,19 +24,20 @@ const AppProsess = () => {
 }
 
 const AuthProcess = () => {
+  const { handleGoogleSignIn } = useAuth()
   return (
     <Layout>
       <Auth />
+      <button onClick={handleGoogleSignIn}>Войти с помощью ggole</button>
     </Layout>
   )
 }
 const Processes = () => {
-  const { elementState } = useAuth()
-  if (elementState === null) {
+  const { isAuthState } = useAuth()
+  if (isAuthState === null) {
     return <Spinner />
   }
-  console.log('elementState', elementState)
-  return elementState ? <AppProsess /> : <AuthProcess />
+  return isAuthState ? <AppProsess /> : <AuthProcess />
 }
 
 //TODO: как работает withProviders
