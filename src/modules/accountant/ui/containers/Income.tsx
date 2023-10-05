@@ -2,12 +2,12 @@ import { useState } from 'react'
 import { Form } from 'antd'
 import { EditModal } from '../components/editModal'
 import { DefaulTable } from '../components/Table'
-import { useGetAllExpensesOperationsQuery } from 'modules/accountant/domain'
+import { useGetAllIncomeOperationsQuery } from 'modules/accountant/domain'
 
 export const Income = () => {
   const [form] = Form.useForm()
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const operationsQuery = useGetAllExpensesOperationsQuery()
+  const operationsQuery = useGetAllIncomeOperationsQuery()
 
   const openModal = (record: any) => {
     setIsModalOpen(true)

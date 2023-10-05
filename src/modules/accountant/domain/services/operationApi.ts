@@ -13,10 +13,19 @@ const api = accountantApi.injectEndpoints({
       },
       providesTags: ['ExpenseOperations'],
     }),
+    getAllIncomeOperations: build.query<any, void>({
+      query() {
+        return {
+          url: `${EEndpoints.GET_ALL_INCOME_OPERATIONS}`,
+          method: 'GET',
+        }
+      },
+      providesTags: ['ExpenseOperations'],
+    }),
     createNewOperation: build.mutation<void, IFormFields>({
       query(body) {
         return {
-          url: `${EEndpoints.CREAT_NEW_OPERATION}`,
+          url: `${EEndpoints.CREATE_NEW_OPERATION}`,
           method: 'POST',
           body,
         }
@@ -29,4 +38,5 @@ const api = accountantApi.injectEndpoints({
 export const {
   useCreateNewOperationMutation,
   useGetAllExpensesOperationsQuery,
+  useGetAllIncomeOperationsQuery,
 } = api
