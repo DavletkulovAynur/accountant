@@ -1,12 +1,12 @@
 import { Routes, Route } from 'react-router-dom'
-import AccountantPage from './AccountantPage'
-import Page2 from './page2'
+import Bookkeeping from './bookkeeping'
+import Dashboard from './dashboard'
 
 export const Routing = () => {
   return (
     <Routes>
-      <Route path="/" element={<AccountantPage />}></Route>
-      <Route path="/page2" element={<Page2 />}></Route>
+      <Route path="/" element={<Dashboard />}></Route>
+      <Route path="/bookeeping" element={<Bookkeeping />}></Route>
     </Routes>
   )
 }

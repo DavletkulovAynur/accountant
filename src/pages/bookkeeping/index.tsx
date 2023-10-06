@@ -2,8 +2,8 @@ import React from 'react'
 
 import { Accountant } from 'modules/accountant'
 
-const AccountantPage: React.FC = () => {
+const Bookkeeping: React.FC = () => {
   return <Accountant />
 }
 
-export default AccountantPage
+export default Bookkeeping
