@@ -24,19 +24,19 @@ const Sidebar: FC = memo(() => {
   console.log('logOut', logOut)
   const items = [
     {
-      key: '/page2',
+      key: '1',
       icon: <BorderOutlined />,
       label: 'Dashboard',
       onClick: () => {
-        navigate('/page2')
+        navigate('/')
       },
     },
     {
-      key: '/',
+      key: '2',
       icon: <ProfileOutlined />,
       label: 'Bookkeeping',
       onClick: () => {
-        navigate('/')
+        navigate('/bookeeping')
       },
     },
     {
@@ -60,7 +60,7 @@ const Sidebar: FC = memo(() => {
       <div className="demo-logo-vertical"></div>
       <Menu
         theme="dark"
-        defaultSelectedKeys={[pathname]}
+        defaultSelectedKeys={['1']}
         mode="inline"
         items={items}
       />
