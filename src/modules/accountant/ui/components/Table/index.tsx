@@ -1,7 +1,8 @@
 import React, { memo } from 'react'
 import { Table } from 'antd'
-import { EditOutlined } from '@ant-design/icons'
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import dateFormat from 'dateformat'
+import css from './styles.module.scss'
 
 export interface Item {
   key: string
@@ -13,6 +14,10 @@ export interface Item {
 const DefaulTable: React.FC<any> = memo(({ openModal, operationsQuery }) => {
   const edit = (record: any) => {
     openModal(record)
+  }
+
+  const deleteOperation = (record: any) => {
+    console.log('test', record)
   }
 
   const { data = [], isLoading } = operationsQuery
@@ -45,7 +50,15 @@ const DefaulTable: React.FC<any> = memo(({ openModal, operationsQuery }) => {
       title: 'OPERATIONS',
       dataIndex: 'operation',
       render: (_: any, record: any) => {
-        return <EditOutlined onClick={() => edit(record)} />
+        return (
+          <>
+            <EditOutlined onClick={() => edit(record)} />
+            <DeleteOutlined
+              className={css.deleteIcon}
+              onClick={() => deleteOperation(record)}
+            />
+          </>
+        )
       },
     },
   ]
