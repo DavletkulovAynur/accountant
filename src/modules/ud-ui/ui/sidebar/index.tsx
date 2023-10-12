@@ -1,13 +1,12 @@
 import { memo, FC, useState } from 'react'
 import './index.scss'
 
-import { Avatar, Layout, Menu, Space } from 'antd'
+import { Layout, Menu } from 'antd'
 import { ConfirmModal } from 'shared/ui/components'
 import {
   ProfileOutlined,
   CloseSquareOutlined,
   BorderOutlined,
-  UserOutlined,
 } from '@ant-design/icons'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from 'shared/hooks'
@@ -21,7 +20,6 @@ const Sidebar: FC = memo(() => {
   const navigate = useNavigate()
   const { pathname } = useLocation()
 
-  console.log('logOut', logOut)
   const items = [
     {
       key: '1',

@@ -1,8 +1,9 @@
-import React, { memo } from 'react'
-import { Table } from 'antd'
+import React, { memo, useState } from 'react'
+import { Table, Flex } from 'antd'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import dateFormat from 'dateformat'
 import css from './styles.module.scss'
+import { ConfirmModal } from 'shared/ui/components'
 
 export interface Item {
   key: string
@@ -12,12 +13,24 @@ export interface Item {
 }
 
 const DefaulTable: React.FC<any> = memo(({ openModal, operationsQuery }) => {
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false)
+  const [deleteId, setDeleteId] = useState<string>('')
   const edit = (record: any) => {
     openModal(record)
   }
 
-  const deleteOperation = (record: any) => {
-    console.log('test', record)
+  const deleteOperation = () => {
+    console.log(deleteId)
+  }
+
+  const openDeleteModal = (record: any) => {
+    console.log(record)
+    setDeleteId(record.id)
+    setIsOpenModal(true)
+  }
+
+  const onCancel = () => {
+    setIsOpenModal(false)
   }
 
   const { data = [], isLoading } = operationsQuery
@@ -51,13 +64,13 @@ const DefaulTable: React.FC<any> = memo(({ openModal, operationsQuery }) => {
       dataIndex: 'operation',
       render: (_: any, record: any) => {
         return (
-          <>
+          <Flex justify="space-evenly">
             <EditOutlined onClick={() => edit(record)} />
             <DeleteOutlined
               className={css.deleteIcon}
-              onClick={() => deleteOperation(record)}
+              onClick={() => openDeleteModal(record)}
             />
-          </>
+          </Flex>
         )
       },
     },
@@ -70,13 +83,20 @@ const DefaulTable: React.FC<any> = memo(({ openModal, operationsQuery }) => {
   })
 
   return (
-    <Table
-      loading={isLoading}
-      bordered
-      dataSource={data}
-      columns={mergedColumns}
-      rowClassName="editable-row"
-    />
+    <>
+      <Table
+        loading={isLoading}
+        bordered
+        dataSource={data}
+        columns={mergedColumns}
+        rowClassName="editable-row"
+      />
+      <ConfirmModal
+        isOpen={isOpenModal}
+        onCancel={onCancel}
+        onOk={deleteOperation}
+      />
+    </>
   )
 })
 
