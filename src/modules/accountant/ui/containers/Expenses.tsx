@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Form } from 'antd'
 import { EditModal } from '../components/editModal'
-import { DefaulTable } from '../components/Table'
+import { DefaultTable } from '../components/DefaultTable'
 import { useGetAllExpensesOperationsQuery } from 'modules/accountant/domain'
 
 export const Expenses = () => {
@@ -10,7 +10,6 @@ export const Expenses = () => {
   const operationsQuery = useGetAllExpensesOperationsQuery()
 
   const openModal = (record: any) => {
-    console.log(record)
     setIsModalOpen(true)
   }
 
@@ -20,7 +19,7 @@ export const Expenses = () => {
 
   return (
     <Form form={form} component={false}>
-      <DefaulTable form={form} openModal={openModal} operationsQuery={operationsQuery} />
+      <DefaultTable openModal={openModal} operationsQuery={operationsQuery} />
       <EditModal closeModal={closeModal} isModalOpen={isModalOpen} />
     </Form>
   )
