@@ -1,6 +1,7 @@
 import { IFormFields } from 'modules/accountant/ui/components/operationForm/types'
 import { accountantApi } from '../api'
 import { EEndpoints } from 'config'
+import { TDeleteOperationParams } from './types'
 
 const api = accountantApi.injectEndpoints({
   endpoints: (build) => ({
@@ -32,6 +33,16 @@ const api = accountantApi.injectEndpoints({
       },
       invalidatesTags: ['ExpenseOperations'],
     }),
+    deleteOpearation: build.mutation<void, TDeleteOperationParams>({
+      query(body) {
+        return {
+          url: `${EEndpoints.CREATE_DELETE_OPERATION}`,
+          method: 'DELETE',
+          body,
+        }
+      },
+      invalidatesTags: ['ExpenseOperations'],
+    }),
   }),
 })
 
@@ -39,4 +50,5 @@ export const {
   useCreateNewOperationMutation,
   useGetAllExpensesOperationsQuery,
   useGetAllIncomeOperationsQuery,
+  useDeleteOpearationMutation,
 } = api

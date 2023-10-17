@@ -15,7 +15,7 @@ import { CURRENCY_NAMES, currencySelectors } from 'shared/enums'
 import { useCreateNewOperationMutation } from 'modules/accountant/domain'
 import { RHFRadioTab } from 'shared/ui/RHF/RHFRadioTab'
 
-//  TODO:
+//  TODO: попробовать вынести createOperation
 const OperationForm = memo(({ closeModal }: any) => {
   const [createOperation, { isLoading }] = useCreateNewOperationMutation()
   const methods = useForm<IFormFields>({
